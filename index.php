@@ -6,7 +6,6 @@ Description: Convert youtube links into image preview that will automatically pl
 Author: Ionuț Staicu
 Version: 1.0.0
 Author URI: http://ionutstaicu.com
-Slug: Clickable_Youtube_Thumbs
  */
 
 if (!defined('ABSPATH')) {
@@ -22,7 +21,7 @@ define('CLICKABLE_YT_URL', plugin_dir_url(__FILE__));
 define('CLICKABLE_YT_PATH', plugin_dir_path(__FILE__));
 
 add_action('plugins_loaded', function () {
-	load_plugin_textdomain('Clickable_Youtube_Thumbs', false, dirname(plugin_basename(__FILE__)) . '/lang');
+	load_plugin_textdomain('clickable-yt', false, dirname(plugin_basename(__FILE__)) . '/lang');
 });
 
 add_action('wp_enqueue_scripts', function () {
