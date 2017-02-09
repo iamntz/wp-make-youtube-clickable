@@ -29,15 +29,14 @@ add_action('wp_enqueue_scripts', function () {
 	wp_register_script('Clickable_Youtube_Thumbs', plugins_url('Clickable_Youtube_Thumbs.js', CLICKABLE_YT_BASEFILE), [], CLICKABLE_YT_VERSION, true);
 	wp_register_style('Clickable_Youtube_Thumbs', plugins_url('Clickable_Youtube_Thumbs.css', CLICKABLE_YT_BASEFILE), [], CLICKABLE_YT_VERSION);
 
-	wp_enqueue_style( 'Clickable_Youtube_Thumbs' );
 });
 
 add_filter('get_comment_text', function ($content, $comment, $args) {
 	$embeds = array_map(function ($item) {
 		preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $item, $matches);
 		if (!empty($matches)) {
-			wp_enqueue_script( 'Clickable_Youtube_Thumbs' );
-
+			wp_enqueue_script('Clickable_Youtube_Thumbs');
+			wp_enqueue_style('Clickable_Youtube_Thumbs');
 			return sprintf('<a href="%s" data-youtube-id="%s" class="clickable-yt"><i class="clickable-yt-control"></i><img src="//img.youtube.com/vi/%s/hqdefault.jpg" alt=""></a>', $matches[0], $matches[1], $matches[1]);
 		}
 		return $item;
