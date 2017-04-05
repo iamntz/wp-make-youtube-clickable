@@ -32,7 +32,7 @@ add_action('wp_enqueue_scripts', function () {
 
 add_filter('get_comment_text', function ($content, $comment, $args) {
 	$embeds = array_map(function ($item) {
-		preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $item, $matches);
+		preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", trim($item), $matches);
 		if (!empty($matches)) {
 			wp_enqueue_script('Clickable_Youtube_Thumbs');
 			wp_enqueue_style('Clickable_Youtube_Thumbs');
